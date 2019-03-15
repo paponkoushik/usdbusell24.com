@@ -1,0 +1,290 @@
+{% extends 'layouts/application.twig' %}
+{% block title %} Money Provider | Create {% endblock %}
+{% block breadcumbs %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Users</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Users</a></li>
+                                <li><a href="#">Create</a></li>
+                                <li class="active">New</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title">Add New User</strong>
+                </div>
+                <div class="card-body card-block">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center">
+                            <img alt="User Pic" src="/assets/images/profile.jpeg" class="img-circle img-responsive">
+                        </div>
+                        <div class=" col-md-9 col-lg-9 ">
+                            <form action="/admin/users/create" method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="moneyProviderName" class=" form-control-label">First Name</label>
+                                            <input type="text" name="first_name"  id="firstName" placeholder="Enter first name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="moneyProviderName" class=" form-control-label">Last Name</label>
+                                            <input type="text" name="last_name" id="lastName" placeholder="Enter last name" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="moneyProviderName" class=" form-control-label">Email Address</label>
+                                            <input type="email" name="email_address" id="emailAddress" placeholder="Enter email address" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="moneyProviderName" class=" form-control-label">Password</label>
+                                            <input type="password" name="password"  id="firstName" placeholder="Enter password" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="moneyProviderName" class=" form-control-label">Confirm Password</label>
+                                            <input type="password" name="confirm_password" id="lastName" placeholder="Enter confirm password" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-dot-circle-o"></i> Create
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title">User List</strong>
+                </div>
+                <div class="card-body card-block">
+                    <div>
+                        <p class="title">Search User</p>
+                    </div>
+                    <form action="/admin/users" method="get">
+                        <div class="row col-12">
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <input type="text" id="moneyProviderName" name="first_name" value="{{ queryData.first_name ?: '' }}" placeholder="First Name" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <input type="text" id="moneyProviderRefererName" name="last_name" value="{{ queryData.last_name ?: '' }}" placeholder="Last Name" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <select name="status" class="form-control">
+                                        <option value="">Select Status</option>
+                                        <option value="1" {{ queryData.status == 1 ? 'selected' : '' }}>Active</option>
+                                        <option value="2" {{ queryData.status == 2 ? 'selected' : '' }}>Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <input type="text" id="moneyProviderRefererName" name="email_address" value="{{ queryData.email_address ?: '' }}" placeholder="Email Address" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Search"/>
+                                    <a href="/admin/users" class="btn btn-info btn-sm">Reset</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    {% if users | length > 0 %}
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email Address</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Created</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                {% set counter = ( counter | default(0) ) + 1 %}
+                                <tr>
+                                    <th>{{ counter }}</th>
+                                    <td><a href="/admin/users/profile/{{ user.uuid }}" >{{ user.first_name }} {{ user.last_name }}</a></td>
+                                    <td><a href="/admin/users/profile/{{ user.uuid }}">{{ user.email_address }}</a></td>
+                                    <td>
+                                        {% if user.status == 1 %}
+                                            <span class="text-success">{{ "Active" | capitalize }}</span>
+                                        {% else %}
+                                            <span class="text-danger">{{ "Inactive" | capitalize }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ user.created | date('d M, Y') }}</td>
+                                    <td>
+                                        <a class="btn btn-sm btn-info text-light updateProviderBtn"
+                                           data-toggle="modal"
+                                           data-target="#updateUser"
+                                           title="Edit this user?"
+                                           data-firstname="{{ user.first_name }}"
+                                           data-lastname="{{ user.last_name }}"
+                                           data-emailaddress="{{ user.email_address }}"
+                                           data-id="{{ user.id }}">Edit</a>
+
+                                        <a href="/admin/users/delete/{{ user.uuid }}"
+                                           class="btn btn-danger btn-sm"
+                                           onClick="return confirm('Are you sure to delete this user?')"
+                                           title="Delete this user?">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                    <div class="text-center">
+                        <span class="text-danger">No users found</span>
+                    </div>
+                    {% endif %}
+                    <span class="text-muted">
+                            showing
+                        {{ ((page - 1) * perPage) + 1 }} - {{ page * perPage > total ? total : page * perPage }}
+                        of {{ total }} records
+                    </span>
+                    <br>
+                    <br>
+                    <div class="fa-pull-right">
+                        {% if page < maxPage %}
+                            <a class="btn btn-primary btn-sm text-light" href="/admin/users?page={{ page + 1 }}">Next</a>
+                        {% endif %}
+                    </div>
+                    <div class="fa-pull-left">
+                        {% if page > 1 %}
+                            <a class="btn btn-primary btn-sm text-light" href="/admin/users?page={{ page - 1 }}">Previous</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# update modal#}
+    <div class="to-do-widget m-t-20">
+        <div class="modal fade bd-example-modal-lg" id="updateUser" tabindex="-1"
+             aria-labelledby="myLargeModalLabel" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">User's Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/admin/users/update" method="post">
+
+                            <input id="dataId" type="hidden" value="{{ user.id }}" class="form-control"
+                                   name="id">
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input id="dataFirstName" type="text" value="{{ user.first_name }}"
+                                               class="form-control" name="first_name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" id="dataLastName" name="last_name" class="form-control"
+                                               value="{{ user.last_name }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Email Address</label>
+                                        <input type="text" id='dataEmailAddress' name="email_address" class="form-control"
+                                               value="{{ user.email_address }}" readonly="readonly">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input id="dataPassword" type="password" name="password" placeholder="******" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Confirm Password</label>
+                                        <input id="dataConfirmPassword" type="password" name="confirm_password" placeholder="******" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block jsBottom %}
+    <script>
+        $(document).ready(function () {
+            $(".updateProviderBtn").click(function () {
+                $("#dataId").val($(this).data('id'));
+                $("#dataFirstName").val($(this).data('firstname'));
+                $("#dataLastName").val($(this).data('lastname'));
+                $("#dataEmailAddress").val($(this).data('emailaddress'));
+
+                $('#updateUser').modal('show');
+            });
+        })
+    </script>
+{% endblock %}

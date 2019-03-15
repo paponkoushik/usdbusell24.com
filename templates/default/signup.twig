@@ -1,0 +1,56 @@
+{% extends 'layouts/default.twig' %}
+
+{% block content %}
+    <div class="row text-center">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="user-account">
+                <h2>Create Account</h2>
+                <!-- form -->
+                {% include 'elements/flash.twig' %}
+                <form action="/signup" method="post">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="first_name" placeholder="First Name" >
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="last_name" placeholder="Last Name" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email_address" placeholder="Email address" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Password" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn">Register</button>
+
+                    <div class="user-option">
+                        <div class="pull-right forgot-password">
+                            <a href="/login">Login?</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

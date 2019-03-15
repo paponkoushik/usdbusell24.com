@@ -1,0 +1,12 @@
+/vendor/
+/logs/*
+!/logs/.gitkeep
+.idea/*
+config.php
+.env
+tmp/*
+!tmp/.gitkeep
+phinx.yml
+
+public/assets/images/profiles/*
+!public/assets/images/profiles/.gitkeep

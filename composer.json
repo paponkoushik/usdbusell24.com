@@ -1,0 +1,69 @@
+{
+    "name": "previewtechs/usdbuysell24.com",
+    "description": "Money Exchange",
+    "keywords": [
+        "microframework",
+        "rest",
+        "router",
+        "psr7",
+        "skeleton",
+        "PreviewTechnologies",
+        "previewtechs",
+        "Money Exchange"
+    ],
+    "homepage": "http://github.com/PreviewTechnologies",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Preview Technologies Limited",
+            "email": "info@previewtechs.com",
+            "homepage": "https://www.previewtechs.com/"
+        }
+    ],
+    "config": {
+        "platform": {
+            "php": "5.5.34"
+        }
+    },
+    "require": {
+        "ext-iconv": "*",
+        "ext-json": "*",
+        "ext-memcached": "*",
+        "ext-curl": "*",
+        "vlucas/phpdotenv": "v2.4.0",
+        "paragonie/random_compat": "^2.0",
+        "slim/slim": "^3.11",
+        "slim/twig-view": "^2.4",
+        "slim/flash": "^0.2.0",
+        "illuminate/events": "^5.2",
+        "illuminate/database": "^5.2",
+        "illuminate/pagination": "^5.2",
+        "psr/log": "^1.0",
+        "monolog/monolog": "^1.22",
+        "previewtechs/php-utilities": "^1.0",
+        "tedivm/stash": "^0.14.2",
+        "omnimail/omnimail": "^0.3.2",
+        "mailgun/mailgun-php": "^2.6",
+        "php-http/guzzle6-adapter": "^1.1",
+        "mandrill/mandrill": "^1.0",
+        "cocur/slugify": "^3.0",
+        "robmorgan/phinx": "^0.9.2"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "USDBuySell\\App\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "USDBuySell\\App\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "start": "php -S 0.0.0.0:8080 -t public public/index.php",
+        "test": "phpunit"
+    }
+}

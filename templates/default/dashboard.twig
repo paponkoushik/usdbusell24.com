@@ -1,0 +1,262 @@
+{% extends 'layouts/default.twig' %}
+
+{% block content %}
+    <div class="section">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Hello, <span class="text-info">{{ session.auth.first_name }} {{ session.auth.last_name }}</span></h3>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#exchanges">Exchange Request</a></li>
+                            <li><a data-toggle="tab" href="#myProfile">My Profile</a></li>
+                            <li><a data-toggle="tab" href="#settings">Settings</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="row">
+            <div class="tab-content col-lg-12 col-md-12">
+                <div id="exchanges" class="tab-pane fade in active">
+                    <h3>Exchange Request</h3>
+                    <table class="table table-bordered table-striped table-hover" align="center" style="font-size:15px">
+                        <thead>
+                        {% set counter = ( counter | default(0) ) + 1 %}
+                        <tr>
+                            <th>#</th>
+                            <th>Send Buy</th>
+                            <th>Received Buy</th>
+                            <th>Send Amount</th>
+                            <th>Received Amount</th>
+                            <th>Status</th>
+                            <th>Created At</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a data-toggle="tab" href="#requestDetails">1</a></td>
+                            <td>
+                                <img src="http://usdbuysell.com/uploads/1520156044_icon.png" width="20px" height="20">
+                                <a data-toggle="tab" href="#requestDetails">Bkash Agent</a>
+                            </td>
+                            <td>
+                                <img src="http://usdbuysell.com/uploads/1520026946_icon.png" width="20px" height="20">
+                                <a data-toggle="tab" href="#requestDetails">Neteller.</a>
+                            </td>
+                            <td><a data-toggle="tab" href="#requestDetails">2000 BDT</a></td>
+                            <td><a data-toggle="tab" href="#requestDetails">2000 BDT</a></td>
+                            <td><a data-toggle="tab" href="#requestDetails">Pending</a></td>
+                            <td>{{ 'now' | date('M d, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><img src="http://usdbuysell.com/uploads/1520156044_icon.png" width="20px" height="20"> Bkash Agent </td>
+                            <td><img src="http://usdbuysell.com/uploads/1520026946_icon.png" width="20px" height="20"> Neteller. </td>
+                            <td>100 BDT</td>
+                            <td>100 BDT</td>
+                            <td>Received</td>
+                            <td>{{ 'now' | date('M d, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><img src="http://usdbuysell.com/uploads/1520156044_icon.png" width="20px" height="20"> Bkash Agent </td>
+                            <td><img src="http://usdbuysell.com/uploads/1520026946_icon.png" width="20px" height="20"> Neteller. </td>
+                            <td>2000 BDT</td>
+                            <td>2000 BDT</td>
+                            <td>Delivered</td>
+                            <td>{{ 'now' | date('M d, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><img src="http://usdbuysell.com/uploads/1520156044_icon.png" width="20px" height="20"> Bkash Agent </td>
+                            <td><img src="http://usdbuysell.com/uploads/1520153963_icon.png" width="20px" height="20"> Skrill. </td>
+                            <td>2100 BDT</td>
+                            <td>2100 BDT</td>
+                            <td>Pending</td>
+                            <td>{{ 'now' | date('M d, Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><img src="http://usdbuysell.com/uploads/1520154778_icon.png" width="20px" height="20"> Rocket Personal </td>
+                            <td><img src="http://usdbuysell.com/uploads/1520153963_icon.png" width="20px" height="20"> Skrill. </td>
+                            <td>2060 BDT</td>
+                            <td>2060 BDT</td>
+                            <td>Pending</td>
+                            <td>{{ 'now' | date('M d, Y') }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="myProfile" class="tab-pane fade">
+                    <h3>My Profile</h3>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="card">
+                                <div class="card-body card-block">
+                                    <div class="row">
+                                        <div class="col-md-3 col-lg-3 " align="center">
+                                            <img alt="User Pic" src="{{ session.auth.profile_pic }}" class="img-responsive" onerror="this.onerror=null;this.src='/assets/images/profile.jpeg'" height="150px" width="180px">
+                                            <br><br>
+                                            <button type="submit" class="btn btn-primary btn-sm"
+                                                    data-toggle="modal"
+                                                    data-target="#changePicture">Change Picture</button>
+                                        </div>
+                                        <div class=" col-md-9 col-lg-9 ">
+                                            <form action="/dashboard/update/{{ session.auth.uuid }}" method="post">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="moneyProviderName" class=" form-control-label">First Name</label>
+                                                            <input type="text" name="first_name" value="{{ session.auth.first_name }}" id="firstName" placeholder="Enter first name" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="moneyProviderName" class=" form-control-label">Last Name</label>
+                                                            <input type="text" name="last_name" value="{{ session.auth.last_name }}"  id="lastName" placeholder="Enter last name" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="moneyProviderName" class=" form-control-label">Email Address</label>
+                                                            <input type="email" name="email_address" id="emailAddress" value="{{ session.auth.email_address }}"  placeholder="Enter email address" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-dot-circle-o"></i> Update
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="settings" class="tab-pane fade">
+                    <h3>Settings</h3>
+                    <p><div class="alert alert-info"><i class="fa fa-info-circle"></i> For settings go to <a href="#">here</a></div></p>
+                </div>
+                <div id="requestDetails" class="tab-pane fade">
+                    <table class="rd-body-wrap">
+                        <tr>
+                            <td></td>
+                            <td class="rd-container" width="600">
+                                <div class="rd-content">
+                                    <table class="rd-main" width="100%" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td class="rd-content-wrap rd-aligncenter">
+                                                <table width="100%" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <td class="rd-content-block">
+                                                            <h1>$65.98 Paid</h1>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="rd-content-block">
+                                                            <h2>Thanks for using usdbuysell24</h2>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="rd-content-block">
+                                                            <table class="rd-invoice">
+                                                                <tr>
+                                                                    <td>
+                                                                        {{ session.auth.first_name }} {{ session.auth.last_name }}<br>
+                                                                        Invoice #12345<br>
+                                                                        {{ 'now' | date('M d, Y') }}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <table class="rd-invoice-items" cellpadding="0" cellspacing="0">
+                                                                            <tr>
+                                                                                <td>Service 1</td>
+                                                                                <td class="rd-aligncenter">$ 12.99</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Service 2</td>
+                                                                                <td class="rd-aligncenter">$ 24.99</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Service 3</td>
+                                                                                <td class="rd-aligncenter">$ 28.00</td>
+                                                                            </tr>
+                                                                            <tr class="total">
+                                                                                <td class="rd-aligncenter" width="80%">Total</td>
+                                                                                <td class="rd-aligncenter">$ 65.98</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="rd-content-block">
+                                                            <a href="#">View in browser</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="rd-content-block">
+                                                            usdbuysell12.com, Dhaka, Bangladesh
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="rd-footer">
+                                        <table width="100%">
+                                            <tr>
+                                                <td class="rd-aligncenter rd-content-block">Questions? Email <a href="#:">support@usdbuysell24.com</a></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {# Picture Upload Modal#}
+    <div class="to-do-widget m-t-20">
+        <div class="modal fade bd-example-modal-lg" id="changePicture" tabindex="-1"
+             aria-labelledby="myLargeModalLabel" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg-6" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Change Profile Picture</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/dashboard/upload-picture/{{ session.auth.uuid }}" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <input id="picture" type="file" value=""
+                                               class="form-control" name="picture">
+                                    </div>
+                                </div>
+                                <div class="modal-footer text-left">
+                                    <button type="submit" class="btn btn-primary btn-sm">Change Picture</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

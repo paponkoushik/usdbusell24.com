@@ -1,0 +1,179 @@
+
+
+.notice {
+    padding: 15px;
+    background-color: #fafafa;
+    border-left: 6px solid #7f7f84;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 5px 8px -6px rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 5px 8px -6px rgba(0, 0, 0, .2);
+    box-shadow: 0 5px 8px -6px rgba(0, 0, 0, .2);
+}
+
+.notice-sm {
+    padding: 10px;
+    font-size: 80%;
+}
+
+.notice-lg {
+    padding: 35px;
+    font-size: large;
+}
+
+.notice-success {
+    border-color: #8a8e90;
+}
+
+.notice-success > strong {
+    color: #80D651;
+}
+
+.notice-info {
+    border-color: #45ABCD;
+}
+
+.notice-info > strong {
+    color: #45ABCD;
+}
+
+.notice-warning {
+    border-color: #FEAF20;
+}
+
+.notice-warning > strong {
+    color: #FEAF20;
+}
+
+.notice-danger {
+    border-color: #0057a7;
+}
+
+.notice-danger > strong {
+    color: #d73814;
+}
+
+.notice-success {
+    color: white;
+    background-color: #114c69;
+}
+
+.font-gray {
+    color: grey;
+}
+
+.notice-danger {
+    color: white;
+    background-color: #ff3c3c;
+}
+
+
+#weatherWidget .currentDesc {
+    color: #ffffff!important;
+}
+.traffic-chart {
+    min-height: 335px;
+}
+#flotPie1  {
+    height: 150px;
+}
+#flotPie1 td {
+    padding:3px;
+}
+#flotPie1 table {
+    top: 20px!important;
+    right: -10px!important;
+}
+.chart-container {
+    display: table;
+    min-width: 270px ;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#flotLine5  {
+    height: 105px;
+}
+
+#flotBarChart {
+    height: 150px;
+}
+#cellPaiChart{
+    height: 160px;
+}
+
+/* -------------------------------------
+    Request Details
+------------------------------------- */
+.rd-container {
+    display: block !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    /* makes it centered */
+    clear: both !important;
+}
+
+.rd-main {
+    background: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: 3px;
+}
+
+.rd-body-wrap {
+    background-color: #FFFFFF;
+    width: 100%;
+}
+
+.rd-content {
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+    padding: 20px;
+}
+
+.rd-aligncenter {
+    text-align: center;
+}
+
+.rd-alignright {
+    text-align: center;
+}
+
+.rd-content-block {
+    padding: 0 0 20px;
+}
+
+/* -------------------------------------
+    INVOICE
+------------------------------------- */
+.rd-invoice {
+    margin: 40px auto;
+    text-align: left;
+    width: 80%;
+}
+.rd-invoice td {
+    padding: 5px 0;
+}
+.rd-invoice .rd-invoice-items {
+    width: 100%;
+}
+.rd-invoice .rd-invoice-items td {
+    border-top: #eee 1px solid;
+}
+.rd-invoice .rd-invoice-items .total td {
+    border-top: 2px solid #333;
+    border-bottom: 2px solid #333;
+    font-weight: 700;
+}
+
+.rd-footer {
+    width: 100%;
+    clear: both;
+    color: #999;
+    padding: 20px;
+}
+.rd-footer a {
+    color: #999;
+}
+.rd-footer p, .rd-footer a, .rd-footer unsubscribe, .rd-footer td {
+    font-size: 12px;
+}

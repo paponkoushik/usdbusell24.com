@@ -1,0 +1,154 @@
+{% extends 'layouts/application.twig' %}
+{% block title %} Money Provider | Create {% endblock %}
+{% block breadcumbs %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>User</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">User</a></li>
+                                <li><a href="#">Profile</a></li>
+                                <li class="active">{{ user.uuid }}</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title"><h3>{{ user.first_name }} {{ user.last_name }}</h3></strong>
+                </div>
+                <div class="card-body card-block">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center">
+                            <img alt="User Pic" src="/assets/images/profile.jpeg" class="img-circle img-responsive">
+                        </div>
+                        <div class=" col-md-9 col-lg-9 ">
+                            <form action="/admin/users/update" method="post">
+                                <div class="row">
+                                    <input type="hidden" value="{{ user.id }}" name="id"/>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="moneyProviderName" class=" form-control-label">First Name</label>
+                                            <input type="text" name="first_name" value="{{ user.first_name }}" id="firstName" placeholder="Enter first name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="moneyProviderName" class=" form-control-label">Last Name</label>
+                                            <input type="text" name="last_name" value="{{ user.last_name }}" id="lastName" placeholder="Enter last name" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="moneyProviderName" class=" form-control-label">Email Address</label>
+                                            <input type="email" name="email_address" id="emailAddress" readonly="readonly" value="{{ user.email_address }}" placeholder="Enter email address" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-dot-circle-o"></i> Update
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title">Exchange Request</strong>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Rocket Agent</td>
+                            <td>120</td>
+                            <td>
+                                <a href="#" class="btn btn-success btn-sm">Edit</a>
+                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Bikash Agent</td>
+                            <td>123</td>
+                            <td>
+                                <a href="#" class="btn btn-success btn-sm">Edit</a>
+                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Rocket Personal</td>
+                            <td>455</td>
+                            <td>
+                                <a href="#" class="btn btn-success btn-sm">Edit</a>
+                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Skrill Personal</td>
+                            <td>455</td>
+                            <td>
+                                <a href="#" class="btn btn-success btn-sm">Edit</a>
+                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Coinbase</td>
+                            <td>455</td>
+                            <td>
+                                <a href="#" class="btn btn-success btn-sm">Edit</a>
+                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>Dollar Exchange</td>
+                            <td>455</td>
+                            <td>
+                                <a href="#" class="btn btn-success btn-sm">Edit</a>
+                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

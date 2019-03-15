@@ -1,0 +1,335 @@
+{% extends 'layouts/application.twig' %}
+{% block title %} Money Provider {% endblock %}
+{% block breadcumbs %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Money Provider</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Money Provider</a></li>
+                                <li><a href="#">All</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title">Add New Money Provider</strong>
+                </div>
+                <div class="card-body card-block">
+                    <form action="/admin/money-provider/create" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row form-group">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="moneyProviderName" class=" form-control-label">Name</label>
+                                            <input type="text" id="moneyProviderName" name="name" placeholder="Provider Name" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="moneyProviderRefererName" class=" form-control-label">Referer Name</label>
+                                            <input type="text" id="moneyProviderRefererName" name="referer_field_name" placeholder="Referer Name" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row form-group">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="moneyProviderIcon" class=" form-control-label">Icon URL</label>
+                                            <input type="text" id="moneyProviderIcon" name="icon_url" placeholder="Icon URL" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="moneyProviderExchangeAmount" class=" form-control-label">Exchange Request</label>
+                                            <input type="text" id="moneyProviderExchangeAmount" name="exchanged_request" placeholder="Exchange Request" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="moneyProviderDescription" class=" form-control-label">Description</label>
+                                    <textarea type="number" id="moneyProviderDescription" name="description" placeholder="Description" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row form-group">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="moneyProviderBuyRate" class="form-control-label">Buy Rate</label>
+                                            <input type="text" id="moneyProviderBuyRate" name="buy_rate" placeholder="0.00" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="moneyProviderTotalReserves" class=" form-control-label">Total Reserves</label>
+                                            <input type="number" id="moneyProviderTotalReserves" name="total_reserves" placeholder="Total Reserves" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row form-group">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="moneyProviderSellRate" class=" form-control-label">Sell Rate</label>
+                                            <input type="text" id="moneyProviderSellRate" name="sell_rate" placeholder="0.00" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title">Money Provider List</strong>
+                </div>
+                <div class="card-body card-block">
+                    <div>
+                        <p class="title">Search Money Provider</p>
+                    </div>
+                    <form action="/admin/money-provider" method="get">
+                        <div class="row col-12">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <input type="text" id="moneyProviderName" name="name" value="{{ queryData.name ?: '' }}" placeholder="Name" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <input type="text" id="moneyProviderRefererName" name="referer_field_name" value="{{ queryData.referer_field_name ?: '' }}" placeholder="Referer Name" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Search"/>
+                                    <a href="/admin/money-provider" class="btn btn-info btn-sm">Reset</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    {% if providers | length > 0 %}
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col" class="text-center">Name</th>
+                                <th scope="col" class="text-right">Buy Rate</th>
+                                <th scope="col" class="text-right">Sell Rate</th>
+                                <th scope="col" class="text-center">Created</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for provider in providers %}
+                                {% set counter = ( counter | default(0) ) + 1 %}
+                                <tr>
+                                    <th>{{ counter }}</th>
+                                    <td class="text-center">
+                                        <img src="{{ provider.icon_url }}" onerror="this.onerror=null;this.src='/assets/images/coin.jpeg'" style="width: 35px; height: 25px"> {{ provider.name }}
+                                    </td>
+                                    <td class="text-right">{{ provider.buy_rate }}</td>
+                                    <td class="text-right">{{ provider.sell_rate }}</td>
+                                    <td class="text-center">{{ provider.created | date('d M, Y') }}</td>
+                                    <td>
+                                        <a class="btn btn-sm btn-info text-light updateProviderBtn"
+                                           data-toggle="modal"
+                                           data-target="#updateProvider"
+                                           title="Edit this provider?"
+                                           data-name="{{ provider.name }}"
+                                           data-refererfieldname="{{ provider.referer_field_name }}"
+                                           data-iconurl="{{ provider.icon_url }}"
+                                           data-description="{{ provider.description }}"
+                                           data-exchangedrequest="{{ provider.exchanged_request }}"
+                                           data-buyrate="{{ provider.buy_rate }}"
+                                           data-sellrate="{{ provider.sell_rate }}"
+                                           data-totalreserves="{{ provider.total_reserves }}"
+                                           data-id="{{ provider.id }}">Edit</a>
+
+                                        <a href="/admin/money-provider/delete/{{ provider.uuid }}"
+                                           class="btn btn-danger btn-sm"
+                                           onClick="return confirm('Are you sure to delete this provider?')"
+                                           title="Delete this provider?">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <div class="text-center">
+                            <span class="text-danger">No provider found</span>
+                        </div>
+                    {% endif %}
+                    <span class="text-muted">
+                            showing
+                        {{ ((page - 1) * perPage) + 1 }} - {{ page * perPage > total ? total : page * perPage }}
+                        of {{ total }} records
+                    </span>
+                    <br>
+                    <br>
+                    <div class="fa-pull-right">
+                        {% if page < maxPage %}
+                            <a class="btn btn-primary btn-sm text-light" href="/admin/money-provider?page={{ page + 1 }}">Next</a>
+                        {% endif %}
+                    </div>
+                    <div class="fa-pull-left">
+                        {% if page > 1 %}
+                            <a class="btn btn-primary btn-sm text-light" href="/admin/money-provider?page={{ page - 1 }}">Previous</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# update modal#}
+    <div class="to-do-widget m-t-20">
+        <div class="modal fade bd-example-modal-lg" id="updateProvider" tabindex="-1"
+             aria-labelledby="myLargeModalLabel" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Provider's Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/admin/money-provider/update" method="post">
+
+                            <input id="dataId" type="hidden" value="{{ provider.id }}" class="form-control"
+                                   name="id">
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input id="dataName" type="text" value="{{ provider.name }}"
+                                               class="form-control" name="name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Icon URL</label>
+                                        <input type="text" id="dataIconUrl" name="icon_url" class="form-control"
+                                               value="{{ provider.icon_url }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Referrer Name</label>
+                                        <input type="text" id='dataRefererFieldName' name="referer_field_name" class="form-control"
+                                               value="{{ provider.referer_field_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Exchange Request</label>
+                                        <input id="dataExchangeAmount" type="text" name="exchanged_request" class="form-control"
+                                               value="{{ provider.exchanged_request }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea id="dataDescription" type="text" name="description" class="form-control">{{ provider.description }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Buy Rate</label>
+                                        <input id="dataBuyRate" type="text" name="buy_rate" class="form-control"
+                                               value="{{ provider.buy_rate }}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Sell Rate</label>
+                                        <input id="dataSellRate" type="text" class="form-control"
+                                               name="sell_rate" value="{{ provider.sell_rate }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Total Reserves</label>
+                                        <input id="dataTotalReserves" type="number" name="total_reserves" class="form-control"
+                                               value="{{ provider.total_reserves }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block jsBottom %}
+    <script>
+        $(document).ready(function () {
+            $(".updateProviderBtn").click(function () {
+                $("#dataId").val($(this).data('id'));
+                $("#dataName").val($(this).data('name'));
+                $("#dataIconUrl").val($(this).data('iconurl'));
+                $("#dataRefererFieldName").val($(this).data('refererfieldname'));
+                $("#dataExchangeAmount").val($(this).data('exchangedrequest'));
+                $("#dataDescription").val($(this).data('description'));
+                $("#dataBuyRate").val($(this).data('buyrate'));
+                $("#dataSellRate").val($(this).data('sellrate'));
+                $("#dataTotalReserves").val($(this).data('totalreserves'));
+
+                $('#updateProvider').modal('show');
+            });
+        })
+    </script>
+{% endblock %}
